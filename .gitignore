@@ -1,0 +1,53 @@
+BookClub.WebUI/ClientApp/node_modules/
+/.idea
+BookClub.API/bin
+BookClub.API/obj
+BookClub.Application/bin
+BookClub.Application/obj
+BookClub.Domain/bin
+BookClub.Domain/obj
+BookClub.DataAccess.MSSQL/bin
+BookClub.DataAccess.MSSQL/obj
+
+# compiled output
+BookClub.WebUI/ClientApp/dist
+BookClub.WebUI/ClientApp/tmp
+/BookClub.WebUI/ClientAppout-tsc
+# Only exists if Bazel was run
+BookClub.WebUI/ClientApp/bazel-out
+
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+BookClub.WebUI/ClientApp/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+BookClub.WebUI/ClientApp/.sass-cache
+BookClub.WebUI/ClientApp/connect.lock
+BookClub.WebUI/ClientApp/coverage
+BookClub.WebUI/ClientApp/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+BookClub.WebUI/ClientApp/typings
+
+# System Files
+.DS_Store
+Thumbs.db

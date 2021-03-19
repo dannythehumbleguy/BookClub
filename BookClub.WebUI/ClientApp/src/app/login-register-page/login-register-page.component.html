@@ -1,0 +1,45 @@
+<form class="card" [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="card-header">
+    <h2>Login</h2>
+    <div *ngIf="message !== ''"
+         class="alert alert-warning">
+      {{message}}
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input formControlName="email" class="form-control" type="email" id="email">
+      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid"
+           class="text-danger">
+        <small *ngIf="loginForm.get('email')?.errors?.required">
+          Required error.
+        </small>
+        <small *ngIf="loginForm.get('email')?.errors?.email">
+          Email isn't correct.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input formControlName="password" class="form-control" type="password" id="password">
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
+           class="text-danger">
+        <small *ngIf="loginForm.get('password')?.errors?.required">
+          Required error.
+        </small>
+        <small *ngIf="loginForm.get('password')?.errors?.minlength">
+          Password length must be greater than 8.
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <button class="btn btn-dark"
+            [disabled]="loginForm.invalid || submitted"
+            type="submit">Submit</button>
+  </div>
+</form>
+
