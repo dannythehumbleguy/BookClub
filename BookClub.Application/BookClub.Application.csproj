@@ -5,7 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Services" />
+      <ProjectReference Include="..\BookClub.DataAccess.MSSQL\BookClub.DataAccess.MSSQL.csproj" />
+      <ProjectReference Include="..\BookClub.Domain\BookClub.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.9.0" />
     </ItemGroup>
 
 </Project>

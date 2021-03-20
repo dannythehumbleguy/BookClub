@@ -1,10 +1,23 @@
 <div class="container main">
   <div class="row">
+
     <div class="col">
-
+      <h3 class="text-center">Read books.</h3>
+      <div *ngFor="let book of readBooks">
+        <app-book-info-cart [book]="book"
+                            buttonMessage="Add to read books"
+                            class=""></app-book-info-cart>
+      </div>
     </div>
+
     <div class="col unread-books">
-
+      <h3 class="text-center">Unread books.</h3>
+      <div *ngFor="let book of unreadBooks">
+        <app-book-info-cart [book]="book"
+                            buttonMessage="Add to read books"
+                            class=""></app-book-info-cart>
+      </div>
     </div>
+
   </div>
 </div>

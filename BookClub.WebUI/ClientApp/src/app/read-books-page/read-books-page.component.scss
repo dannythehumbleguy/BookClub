@@ -1,10 +1,14 @@
 .col{
-  border: solid 2px black;
-  min-height: 500px;
+  border: solid 2px lightgray;
 }
 .unread-books{
   margin-left: 2%;
 }
 .main{
   margin-top: 5%;
+}
+.book-card{
+  width: auto;
+  height: auto;
+  margin-top: 3%;
 }
