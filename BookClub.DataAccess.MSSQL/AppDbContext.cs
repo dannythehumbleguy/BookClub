@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BookClub.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,8 @@ namespace BookClub.DataAccess.MSSQL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>()
-                .ToTable("Books");
+                .ToTable("Books")
+                .HasData(BookDataInitializer.GetBooks());
             modelBuilder.Entity<User>()
                 .ToTable("Users")
                 .HasMany(c => c.ReadBooks)

@@ -33,13 +33,14 @@ namespace BookClub.Application.Services
                 Email = request.Email,
                 PasswordHash = _hasher.HashPassword(request.Password)
             };
-            _context.Users.Add(user);
+            await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
 
             return new()
             {
                 UserId =  user.Id,
-                Token = _jwtService.GenerateToken(user)
+                Token = _jwtService.GenerateToken(user),
+                WasRegistered = false
             };
         }
 
@@ -55,7 +56,8 @@ namespace BookClub.Application.Services
             return new()
             {
                 UserId =  user.Id,
-                Token = _jwtService.GenerateToken(user)
+                Token = _jwtService.GenerateToken(user),
+                WasRegistered = true
             };
         }
     }

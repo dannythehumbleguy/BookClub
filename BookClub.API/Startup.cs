@@ -96,9 +96,12 @@ namespace BookClub.API
                 options.IncludeXmlComments(xmlPath);
             });
             
+            //Custom services
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IJwtService, JwtService>();
             services.AddTransient<IPasswordHasher, PasswordRfc2898Hasher>();
+            services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

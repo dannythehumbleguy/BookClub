@@ -1,8 +1,9 @@
+using System.Security.Claims;
 using System.Threading.Tasks;
+using BookClub.Application.ApiExceptions;
 using BookClub.Domain;
 using BookClub.Domain.Models.Requests;
 using BookClub.Domain.Models.Responses;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,7 +28,7 @@ namespace BookClub.API.Controllers
             {
                 response = _authService.Login(request);
             }
-            catch
+            catch(NotFoundException)
             {
                 response = await _authService.Register(request);
             }
@@ -37,9 +38,9 @@ namespace BookClub.API.Controllers
         [HttpGet]
         [Authorize]
         [Route("isAuthenticated")]
-        public bool LoginOrRegister()
+        public string LoginOrRegister()
         {
-            return true;
+            return User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
     }
 }
