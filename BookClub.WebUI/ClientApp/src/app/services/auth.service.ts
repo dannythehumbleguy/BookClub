@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
@@ -14,8 +13,8 @@ import {ACCESS_TOKEN} from "../shared/local-storage-variables";
 export class AuthService {
 
   constructor(private http: HttpClient,
-              private jwtService: JwtHelperService,
-              private router: Router) { }
+              private jwtService: JwtHelperService)
+  { }
 
   loginOrRegister(request:AuthRequest) : Observable<AuthResponse>{
     return this.http.post<AuthResponse>(`${environment.apiUrl}Auth/login-register`, request)

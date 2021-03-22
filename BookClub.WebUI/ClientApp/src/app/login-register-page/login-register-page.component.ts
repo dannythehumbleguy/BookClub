@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AuthRequest} from "../shared/interfaces";
 import {AuthService} from "../services/auth.service";
-import {delay} from "rxjs/operators";
+import {catchError, delay} from "rxjs/operators";
+import {EMPTY} from "rxjs";
 
 @Component({
   selector: 'app-login-register-page',
@@ -35,7 +36,12 @@ export class LoginRegisterPageComponent {
       password: this.loginForm.value.password,
       email: this.loginForm.value.email
     }
-    this.authService.loginOrRegister(request).subscribe((response) =>{
+    this.authService.loginOrRegister(request)
+      .pipe(catchError((err => {
+        this.message +=err.error.error+"\n";
+        return EMPTY;
+      })))
+      .subscribe((response) =>{
       if(!response.wasRegistered){
         this.message += "A user with such an email will not find it, so he was registered.\n";
         delay(2000);
@@ -44,7 +50,7 @@ export class LoginRegisterPageComponent {
       this.router.navigate(['']);
       this.submitted = false;
     }, error => {
-      this.submitted = false
+      this.submitted = false;
     })
   }
 }

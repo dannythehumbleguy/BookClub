@@ -60,6 +60,7 @@ namespace BookClub.Application.Services
             return readBooks;
         }
 
+        //TODO:Need in refactor.
         public async Task DeleteBookFromRead(string userId, string bookId)
         {
             var user = await _context.Users
@@ -77,9 +78,11 @@ namespace BookClub.Application.Services
                 throw new NotFoundException("book");
             
             user.ReadBooks.Remove(book);
+            await _context.SaveChangesAsync();
         }
-
-        public async Task AddBookFromRead(string userId, string bookId)
+        
+        //TODO:Need in refactor.
+        public async Task AddBookToRead(string userId, string bookId)
         {
             var user = await _context.Users
                 .Include(p => p.ReadBooks)
@@ -88,7 +91,7 @@ namespace BookClub.Application.Services
                 throw new NotFoundException("user");
             
             var book = await _context.Books.SingleOrDefaultAsync(b => b.Id == bookId);
-            if (user == null)
+            if (book == null)
                 throw new NotFoundException("book");
 
             //Check if the user has a book.
@@ -96,6 +99,7 @@ namespace BookClub.Application.Services
                 throw new AlreadyExistsException("book");
             
             user.ReadBooks.Add(book);
+            await _context.SaveChangesAsync();
         }
     }
 }

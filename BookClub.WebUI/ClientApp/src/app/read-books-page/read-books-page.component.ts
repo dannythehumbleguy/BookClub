@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Book} from "../shared/interfaces";
+import {BookService} from "../services/book.service";
 
 @Component({
   selector: 'app-read-books-page',
@@ -11,15 +12,30 @@ export class ReadBooksPageComponent implements OnInit {
   readBooks:Book[] = [];
   unreadBooks:Book[] = [];
 
+  constructor(private bookService:BookService) {
+  }
   ngOnInit(): void {
-    this.unreadBooks = [
-      {id: "1", name: "1984", author: "Джордж Оруэлл" },
-      {id: "4", name: "Маленький принц", author: "Антуан де Сент-Экзюпери" },
-      {id: "5", name: "Убить пересмешника", author: "Харпер Ли" }
-    ]
-    this.readBooks = [
-      {id: "2", name: "Мастер и Маргарита", author: "Михаил Булгаков" },
-      {id: "3", name: "Портрет Дориана Грея", author: "Оскар Уайльд" }
-    ]
+    this.updateColumns();
+  }
+
+  addBookToReadBooks(bookId:string){
+    this.bookService.addBookToReadBooks(bookId).subscribe(()=>{
+      this.updateColumns();
+    });
+  }
+
+  deleteBookToReadBooks(bookId:string){
+    this.bookService.deleteBookToReadBooks(bookId).subscribe(()=>{
+      this.updateColumns();
+    });
+  }
+
+  updateColumns(){
+    this.bookService.getUnreadBooks().subscribe((books)=>{
+      this.unreadBooks = books;
+    })
+    this.bookService.getReadBooks().subscribe((books) => {
+      this.readBooks = books;
+    })
   }
 }

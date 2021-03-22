@@ -9,6 +9,6 @@ namespace BookClub.Domain
         Task<List<BookDto>> GetUnreadBooks(string userId);
         Task<List<BookDto>> GetReadBooks(string userId);
         Task DeleteBookFromRead(string userId, string bookId);
-        Task AddBookFromRead(string userId, string bookId);
+        Task AddBookToRead(string userId, string bookId);
     }
 }

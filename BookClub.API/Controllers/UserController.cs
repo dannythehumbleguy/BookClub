@@ -38,18 +38,18 @@ namespace BookClub.API.Controllers
         
         [HttpPatch]
         [Route("read-books/{bookId}")]
-        public async Task DeleteBookFromRead(string bookId)
+        public async Task AddBookFromRead(string bookId)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            await _userService.DeleteBookFromRead(userId, bookId);
+            await _userService.AddBookToRead(userId, bookId);
         }
         
         [HttpDelete]
         [Route("read-books/{bookId}")]
-        public async Task AddBookFromRead(string bookId)
+        public async Task DeleteBookToRead(string bookId)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            await _userService.AddBookFromRead(userId,bookId);
+            await _userService.DeleteBookFromRead(userId,bookId);
         }
     }
 }

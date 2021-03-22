@@ -5,7 +5,8 @@
       <h3 class="text-center">Read books.</h3>
       <div *ngFor="let book of readBooks">
         <app-book-info-cart [book]="book"
-                            buttonMessage="Add to read books"
+                            (onClick)="deleteBookToReadBooks(book.id)"
+                            buttonMessage="Unread!"
                             class=""></app-book-info-cart>
       </div>
     </div>
@@ -14,7 +15,8 @@
       <h3 class="text-center">Unread books.</h3>
       <div *ngFor="let book of unreadBooks">
         <app-book-info-cart [book]="book"
-                            buttonMessage="Add to read books"
+                            (onClick)="addBookToReadBooks(book.id)"
+                            buttonMessage="Read!"
                             class=""></app-book-info-cart>
       </div>
     </div>

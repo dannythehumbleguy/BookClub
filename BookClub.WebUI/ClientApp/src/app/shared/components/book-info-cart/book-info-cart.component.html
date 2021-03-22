@@ -3,17 +3,17 @@
     <div class="col-8">
       <!--Book name-->
       <div class="row">
-        Book name: {{book.name}}
+        Книга: {{book.name}}
       </div>
       <!--Book author-->
       <div class="row">
-        Author:{{book.author}}
+        Автор: {{book.author}}
       </div>
     </div>
-    <div class="col-4 d-flex justify-content-center">
+    <div class="col-4 d-flex justify-content-end">
       <!--Control button-->
       <div class="row button-container">
-        <button class="btn btn-dark">{{buttonMessage}}</button>
+        <button (click)="submit()" class="btn btn-dark">{{buttonMessage}}</button>
       </div>
     </div>
   </div>
