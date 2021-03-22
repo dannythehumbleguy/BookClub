@@ -19,6 +19,9 @@ namespace BookClub.API.Controllers
             _bookService = bookService;
         }
         
+        /// <summary>
+        /// Returns all books.
+        /// </summary>
         [HttpGet]
         public async Task<List<BookDto>> GetAllBooks()
         {

@@ -19,6 +19,16 @@ namespace BookClub.API.Controllers
         {
             _authService = authService;
         }
+        
+        /// <summary>
+        /// Registers the user if his email is not found.
+        /// </summary>
+        /// <param name="request">Email and password.</param>
+        /// <returns>
+        /// User id,
+        /// JWT token,
+        /// value of whether the user has been registered before.
+        /// </returns>
         [HttpPost]
         [Route("login-register")]
         public async Task<AuthResponse> LoginOrRegister(AuthRequest request)

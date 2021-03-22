@@ -32,8 +32,7 @@ namespace BookClub.API
         {
             services.AddControllers();
             
-            services.AddDbContext<AppDbContext>(options 
-                => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>();
             
             services.AddCors(options =>
                 options.AddDefaultPolicy(builder =>
@@ -110,7 +109,8 @@ namespace BookClub.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookClub.API v1"));
+                app.UseSwaggerUI(c => 
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookClub.API v1"));
             }
 
             app.UseHttpsRedirection();

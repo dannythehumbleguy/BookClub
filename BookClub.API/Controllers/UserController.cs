@@ -20,6 +20,9 @@ namespace BookClub.API.Controllers
             _userService = userService;
         }
         
+        /// <summary>
+        /// Returns books that the user has not read.
+        /// </summary>
         [HttpGet]
         [Route("unread-books")]
         public async Task<List<BookDto>> GetUnreadBooks()
@@ -28,14 +31,22 @@ namespace BookClub.API.Controllers
             return await _userService.GetUnreadBooks(userId);
         }
         
+        /// <summary>
+        /// Returns books that the user has read.
+        /// </summary>
         [HttpGet]
         [Route("read-books")]
         public async Task<List<BookDto>> GetReadBooks()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             return await _userService.GetReadBooks(userId);
-        }
+        } 
         
+        /// <summary>
+        /// Adds the book with bookId to the read list.
+        /// </summary>
+        /// <param name="bookId">Book id.</param>
+        /// <returns>Nothing.</returns>
         [HttpPatch]
         [Route("read-books/{bookId}")]
         public async Task AddBookFromRead(string bookId)
@@ -44,6 +55,11 @@ namespace BookClub.API.Controllers
             await _userService.AddBookToRead(userId, bookId);
         }
         
+        /// <summary>
+        /// Adds the book with bookId to the unread list.
+        /// </summary>
+        /// <param name="bookId">Book id.</param>
+        /// <returns>Nothing</returns>
         [HttpDelete]
         [Route("read-books/{bookId}")]
         public async Task DeleteBookToRead(string bookId)
